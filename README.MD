@@ -34,6 +34,15 @@ Exercise
     - 8:30pm - Create two DynamoDB tables, one to map phone number to available characters and another to house a dictionary of possible words. Using a scrabble dictionary and using PowerShell to filter out any words over 7 characters Long (Maximum a US phone number can have excluding the country code and area code)
         - voiceFoundry-VanityNumbers-NumPair
             - Schema
+
             |Number|Characters|
-            |------|----------|
+            |:----:|:---------|
             |   2  | {"A", "B", "C"} |
+            
+        - voiceFoundry-VanityNumbers-Dictionary
+            - Schema
+            
+            |Id|Word|
+            |:----:|:---------|
+            |   0  | "ABANDON" |
+            |   1   | "ABDOMEN" |
