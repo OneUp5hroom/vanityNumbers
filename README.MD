@@ -25,3 +25,15 @@ Exercise
 3.	What would you have done with more time? We know you have a life. :-)
 4.	BONUS - Please include an architecture diagram.
 ```
+
+
+# Dev Log:
+- 4/28/2021
+    - 7:47pm - Accept Challenge from Belinda Nadalin
+    - 8:00pm - Create Code Repo https://git-codecommit.us-east-1.amazonaws.com/v1/repos/amazonConnect-VanityNumbers
+    - 8:30pm - Create two DynamoDB tables, one to map phone number to available characters and another to house a dictionary of possible words. Using a scrabble dictionary and using PowerShell to filter out any words over 7 characters Long (Maximum a US phone number can have excluding the country code and area code)
+        - voiceFoundry-VanityNumbers-NumPair
+            - Schema
+            |Number|Characters|
+            |------|----------|
+            |   2  | {"A", "B", "C"} |
