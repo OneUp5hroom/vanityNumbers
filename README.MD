@@ -31,7 +31,7 @@ Exercise
 - 4/28/2021
     - 7:47pm - Accept Challenge from Belinda Nadalin
     - 8:00pm - Create Code Repo https://git-codecommit.us-east-1.amazonaws.com/v1/repos/amazonConnect-VanityNumbers
-    - 8:30pm - Create two DynamoDB tables, one to map phone number to available characters and another to house a dictionary of possible words. Using a scrabble dictionary and using PowerShell to filter out any words over 7 characters Long (Maximum a US phone number can have excluding the country code and area code)
+    - 8:30pm - Create two DynamoDB tables, one to map phone number to available characters and another to house a dictionary of possible words. Using a scrabble dictionary and using PowerShell to filter out any words over 7 characters Long (Maximum a US phone number can have excluding the country code and area code) or under 4 characters because we at least want the last four for a good vanity number.
         - voiceFoundry-VanityNumbers-NumPair
             - Schema
 
