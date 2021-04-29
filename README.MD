@@ -46,3 +46,4 @@ Exercise
             |:----:|:---------|
             |   0  | "ABANDON" |
             |   1   | "ABDOMEN" |
+    - 10:48pm - Sorting of applicable words is completed and stored locally in a JSON file, need to bulk import into DynamoDB tomorrow. 
