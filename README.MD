@@ -46,4 +46,8 @@ Exercise
             |:----:|:---------|
             |   0  | "ABANDON" |
             |   1   | "ABDOMEN" |
-    - 10:48pm - Sorting of applicable words is completed and stored locally in a JSON file, need to bulk import into DynamoDB tomorrow. 
+    - 10:48pm - Sorting of applicable words is completed and stored locally in a JSON file, need to bulk import into DynamoDB tomorrow.
+    - 7:30am - Attempting to learn DynamoDB bulk import before work hours start.
+    - EOD - I gave up on bulk import and just let a script upload data for a few hours one by one, had a day job to get to :). All Dictionary items are now in the DynamoDB. 
+
+- 4/30/2021
