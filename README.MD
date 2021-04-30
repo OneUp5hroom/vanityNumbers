@@ -52,4 +52,15 @@ Exercise
     - 7:30am - Attempting to learn DynamoDB bulk import before work hours start.
     - EOD - I gave up on bulk import and just let a script upload data for a few hours one by one, had a day job to get to :). All Dictionary items are now in the DynamoDB. 
 
-- 4/30/2021
+- 4/30/2021 
+    - (Note: My current Employer has 9/80 schedules, meaning we work 9 hours a day and then get every other friday off. I lucked out and this is my 9/80 friday! Meaning my only goals for today are School and this project. I am coming up on finals for Calc 1 so I have to finish that homework / study time before I can really get started on this sadly... this is more fun than Calculus! lol)
+
+    - 9:00am Goal Setting before starting on Calculus. Today is lambda day, time to build the functions for interacting with the DynamoDB service.
+        - Goals for today 
+            - Complete Lambda functions for calculating the Vanity Numbers
+                - Get number matches from DynamoDB Table voiceFoundry-VanityNumbers-NumPair.
+                - Query DynamoDB table voiceFoundry-VanityNumbers-Dictionary for possible word matches.
+            - Create new DynamoDB table to store results
+                - Create Lambda functions for puts and gets on this database.
+    - 9:11am Calculus Time!
+    
