@@ -63,4 +63,5 @@ Exercise
             - Create new DynamoDB table to store results
                 - Create Lambda functions for puts and gets on this database.
     - 9:11am Calculus Time!
+    - 3:00pm Starting on Lambda Functions
     
