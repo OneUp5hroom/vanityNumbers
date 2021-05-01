@@ -64,4 +64,8 @@ Exercise
                 - Create Lambda functions for puts and gets on this database.
     - 9:11am Calculus Time!
     - 3:00pm Starting on Lambda Functions
+    - EOD - Lambda function for generating the vanity number is mostly working. The majority of the issues I have been having are with DynamoDB and finding an economical way to pull words out of my dictionary database. I have settled on a Global Secondary Index based on a column that is the first letter of each word. I will let the Index run over night. See FixDynamoDB.ps1 for adding the FirstLetter Column. 
+
+- 5/1/2021
+    - 7:36AM The Global Secondary Index worked for allowing me to pull all words with my desired starting letter, this is a big win. The downside is my database of words is too large to be reasonably used. Currently I have 72,997 words available in my dictionary. I plan to cull my data down to include ONLY words with 7 characters instead of anything between 4 and 7 characters as it is now. Hopefully that will bring the word count down enough that we can efficiently look through applicable words in Lambda. ___I would have preffered to keep it where the vanity numbers were not locked to "full length" vanity numbers, but with my limited time I believe this is the best route. I hope it does not bite me in the end with not having enough words to match every possible combination of numbers!___
     
