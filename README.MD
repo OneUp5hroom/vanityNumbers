@@ -87,3 +87,7 @@ Exercise
     
     - 8:27pm Finally got the filtering out 0 working and pulling smaller words from dynamoDB. the use of attribute_not_exists() was a crucial piece and using null will not work as expected in dynamoDB. Currently the Lambda function will pull words in the middle of the phone number, for example if the number is 1-800-350-3647 one result would be 1-800-350-DOG7. I do not really like this, but at this time I need to move on. ___If I find I have more time later on this is one thing I would like to fix.___ 
     - EOD tomorrow I will need to figure out plugging the words back into the number in the Lambda function and returning that to the final DynamoDB table. After that is complete we should be off to the races. 
+- 5/2/2021
+    - 7:30am Need to finish mapping the found words to the proper placement in the phone number and returning the vanity numbers to the customer.
+    - 11:00am Lambda function is complete and working properly. Time to start on Amazon Connect.
+    - 2:00pm base Amazon Contact Flow is working as expected, need to create a Lambda function to read from the database of submitted items so the contact flow can read the results back to the customer. 
