@@ -78,10 +78,11 @@ Exercise
     - 9:30AM Culling completed new total count of available words is: 32,899... next idea to keep memory use low in Lambda is to break each remaining word out into individual characters, that way I can query the DB in loops and only pull out words that are actual matches instead of pulling large data sets down into lambda and then iterating over them. This may or may not work out, but I can have it run while I am off doing other things (have a baby shower to go to for a friend this morning). See CharacterBreakOut.ps1.
     - 9:46AM Found my Culling messed up my indexing, having to fix that... see fixIndex.ps1
     - 1:38pm realized in testing that 0's do not have any letters assigned to them on a touchtone phone, meaning I will need to have error handling to cover phone numbers that have 0's in the last 7 digits of the number.
-    - 2:45pm lambda funciton is working, but limiting my returns to 7 character "full" vanity numbers is very limiting to the results, especially with the 0's issue. To Fulfill returning a top 3 or 5 numbers I will need to add more options to the dictionary. Meaning the work I did earlier to Cull the number of results is actually hurting results... I will need to go back to the full dictionary, but keep the current schema. 
+    - 2:45pm lambda funciton is working, but limiting my returns to 7 character "full" vanity numbers is very limiting to the results, especially with the 0's issue. To Fulfill returning a top 3 or 5 numbers I will need to add more options to the dictionary. Meaning the work I did earlier to Cull the number of results is actually hurting results... I will need to go back to the full dictionary, but keep the current schema. (NewDictionaryIngest.ps1)
         - New Schema
 
         |Id|FirstLetter | Second Letter | Third Letter |Word|
         |:----:|:---:|:---:|:---:|:---------|
         |   0  | H | A | T | "HAT" |
     
+    - 8:27pm Finally got the filtering out 0 working and pulling smaller words from dynamoDB. the use of attribute_not_exists() was a crutial piece and using null will not work as expected in dynamoDB. Currently the Lambda function will pull words in the middle of the phone number, for example if the number is 1-800-350-3647 one result would be 1-800-350-DOG7. I do not really like this, but at this time I need to move on. ___If I find I have more time later on this is one thing I would like to fix.___ 
