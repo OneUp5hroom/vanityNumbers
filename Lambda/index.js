@@ -192,11 +192,13 @@ exports.handler = async (event) => {
             };
             const values = await getItems(wordQuery);
             if (values.Items.length > 0 && values.Items !== undefined) {
-               
                 values.Items.forEach(element => {wordArray.push(element.word)});
             }
         }
     }
+
+
+
     console.log('----wordArray----');
     console.log(wordArray);
     return;
