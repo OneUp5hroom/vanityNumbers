@@ -90,4 +90,7 @@ Exercise
 - 5/2/2021
     - 7:30am Need to finish mapping the found words to the proper placement in the phone number and returning the vanity numbers to the customer.
     - 11:00am Lambda function is complete and working properly. Time to start on Amazon Connect.
-    - 2:00pm base Amazon Contact Flow is working as expected, need to create a Lambda function to read from the database of submitted items so the contact flow can read the results back to the customer. 
+    - 2:00pm base Amazon Contact Flow is working as expected, need to create a Lambda function to read from the database of submitted items so the contact flow can read the results back to the customer.
+    - EOD, got distracted with life and was not able to make as much progress as I would have liked. The call center is up and the call flow is working to the point of generating new vanity numbers and reading the top two back to the customer. The call flows quickly became overwhelming to look at and my next task for myself will be to break them out into multiple flows so they are easier to follow. 
+- 5/3/2021
+    - 7:42am Because today is Monday I will have to try to make a lot of progress in a very short amount of time this evening. I will need to reserve at least one day for cleaning up documentation so I hope I will have enough time to deliver a complete project. 
