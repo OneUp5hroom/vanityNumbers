@@ -5,7 +5,9 @@ const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 exports.handler = async (event, context, callback) => {
     let phoneNumber;
     let item1;
+    let item1word;
     let item2;
+    let item2word;
     let resultMap;
 
     phoneNumber = event.phoneNumber;
@@ -50,13 +52,17 @@ exports.handler = async (event, context, callback) => {
         // get top two vanity numbers based on the sort key wordLength
         for (let i = 0; i < 2; i++) {
             if (i === 0) {
+                item1word = returnedItems.Items[i].word;
                 item1 = returnedItems.Items[i].ssmlVanityNumber;
             } else {
+                item2word = returnedItems.Items[i].word;
                 item2 = returnedItems.Items[i].ssmlVanityNumber;
             }
         }
         resultMap = {
+            item1word: item1word,
             item1: item1,
+            item2word: item2word,
             item2: item2,
             message: 200
         };
