@@ -109,3 +109,4 @@ Exercise
 - 5/3/2021
     - 7:42am Because today is Monday I will have to try to make a lot of progress in a very short amount of time this evening. I will need to reserve at least one day for cleaning up documentation so I hope I will have enough time to deliver a complete project. 
     - 6:35pm Testing is going well, I am not liking how things are sounding when the vanity numbers are read out. Researching it looks like the only way for me to hear the numbers in an acceptable way would be to integrate SSML into my database entry. This will take modifying the lambda code.. again. While editing I discovered an issue with letter placement in the Lambda code anyways, so I will need to fix that. 
+    - 8:27pm Fixed Vanity Number placement in word, and added SSML integration. 
