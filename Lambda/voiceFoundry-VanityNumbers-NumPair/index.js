@@ -47,15 +47,13 @@ exports.handler = async (event, context, callback) => {
     let wordArray = [];
     let upperBound;
     let storedPosition;
-    let startingPosition = 0;
+    let startingPosition = 7;
     let phoneNumber;
 
     phoneNumber = event.phoneNumber;
     if (phoneNumber === undefined || phoneNumber.length < 7) {
         phoneNumber = event['Details']['Parameters']['phoneNumber'];
     }
-    console.log('phoneNumber');
-    console.log(phoneNumber);
     // format to remove all dashes and parentheses
     const result = formatNumber(phoneNumber);
     const numbers = result.trimmedNumber;
@@ -111,11 +109,12 @@ exports.handler = async (event, context, callback) => {
         // future improvements would be to be able to strattle the 0 or 1 with two words or use them in creative ways like having 1s be "L" in a word or 0 be "o".
         // this inevitably would be a business process decision for the customer to make when we went to impliment a solution (how they want it to work).
         if (objectArray[a].number === '0' || objectArray[a].number === '1') {
-            storedPosition = a;
+            storedPosition = a + 1;
         }
     }
     if (storedPosition !== undefined && storedPosition > 0) {
-        objectArray = objectArray.splice(storedPosition + 1,objectArray.length);
+        objectArray = objectArray.splice(storedPosition,objectArray.length);
+        startingPosition = startingPosition - storedPosition;
     }
     // END 0s and 1s Event Handling
 
@@ -130,8 +129,7 @@ exports.handler = async (event, context, callback) => {
     }
 
     for (let o = 0; o < upperBound; o++) {
-        startingPosition = startingPosition + o;
-
+        startingPosition = startingPosition - o;
         for (let i = 0; i < 3; i++) {
             // There is probably a better way to do this... but I needed to filter on if the
             // index existed in the array to avoid errors on undefined. 
@@ -294,7 +292,7 @@ exports.handler = async (event, context, callback) => {
                 values.Items.forEach(element => {
                     let date = new Date();
                     switch (startingPosition) {
-                        case 0:
+                        case 7:
                             if (element.word[0]) { firstNumber = element.word[0] } else { firstNumber = firstNumberOrig }
                             if (element.word[1]) { secondNumber = element.word[1] } else { secondNumber = secondNumberOrig }
                             if (element.word[2]) { thirdNumber = element.word[2] } else { thirdNumber = thirdNumberOrig }
@@ -303,7 +301,7 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[5]) { sixthNumber = element.word[5] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[6]) { seventhNumber = element.word[6] } else { seventhNumber = seventhNumberOrig }
                             break;
-                        case 1:
+                        case 6:
                             firstNumber = firstNumberOrig;
                             if (element.word[0]) { secondNumber = element.word[0] } else { secondNumber = secondNumberOrig }
                             if (element.word[1]) { thirdNumber = element.word[1] } else { thirdNumber = thirdNumberOrig }
@@ -312,7 +310,7 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[4]) { sixthNumber = element.word[4] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[5]) { seventhNumber = element.word[5] } else { seventhNumber = seventhNumberOrig }
                             break;
-                        case 2: 
+                        case 5: 
                             firstNumber = firstNumberOrig;
                             secondNumber = secondNumberOrig;
                             if (element.word[0]) { thirdNumber = element.word[0] } else { thirdNumber = thirdNumberOrig }
@@ -321,7 +319,7 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[3]) { sixthNumber = element.word[3] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[4]) { seventhNumber = element.word[4] } else { seventhNumber = seventhNumberOrig }
                             break;
-                        case 3: 
+                        case 4: 
                             firstNumber = firstNumberOrig;
                             secondNumber = secondNumberOrig;
                             thirdNumber = thirdNumberOrig;
@@ -330,7 +328,7 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[2]) { sixthNumber = element.word[2] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[3]) { seventhNumber = element.word[3] } else { seventhNumber = seventhNumberOrig }
                             break;
-                        case 4: 
+                        case 3: 
                             firstNumber = firstNumberOrig;
                             secondNumber = secondNumberOrig;
                             thirdNumber = thirdNumberOrig;
@@ -412,11 +410,12 @@ function getItems(params) {
 }
 
 function formatNumber(phoneNumber) {
-    if (phoneNumber.length >= 11) {
-        phoneNumber = phoneNumber.slice(-10);
-    }
-    return {
+    let obj = {
         "trimmedNumber": phoneNumber.trim().replace(/\+/g,'').replace(/-/g,'').replace(/\(/g,'').replace(/\)/g,'').replace(/\s/g,'').slice(-7),
         "fullNumber": phoneNumber.trim().replace(/\+/g,'').replace(/-/g,'').replace(/\(/g,'').replace(/\)/g,'').replace(/\s/g,'')
     };
+    if (obj['fullNumber'].length >=11 ) {
+        obj['fullNumber'] = obj['fullNumber'].slice(-10);
+    }
+    return obj;
 }
