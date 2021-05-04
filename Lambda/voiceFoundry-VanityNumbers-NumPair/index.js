@@ -391,8 +391,7 @@ exports.handler = async (event, context, callback) => {
       } catch (e) {
         console.log(e.message);
       }
-      
-      
+    
     resultMap = {
         message: 200
     };
@@ -415,7 +414,7 @@ function formatNumber(phoneNumber) {
         "trimmedNumber": phoneNumber.trim().replace(/\+/g,'').replace(/-/g,'').replace(/\(/g,'').replace(/\)/g,'').replace(/\s/g,'').slice(-7),
         "fullNumber": phoneNumber.trim().replace(/\+/g,'').replace(/-/g,'').replace(/\(/g,'').replace(/\)/g,'').replace(/\s/g,'')
     };
-    if (obj['fullNumber'].length >=11 ) {
+    if (obj['fullNumber'].length >= 11 ) {
         obj['fullNumber'] = obj['fullNumber'].slice(-10);
     }
     return obj;

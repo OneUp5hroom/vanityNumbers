@@ -9,8 +9,13 @@ exports.handler = async (event, context, callback) => {
     let item2;
     let item2word;
     let resultMap;
+    let webSource;
 
-    phoneNumber = event.phoneNumber;
+    console.log(event);
+    // Websource & test parameters
+    phoneNumber = event.queryStringParameters.phoneNumber;
+    webSource = event.queryStringParameters.webSource;
+
     if (phoneNumber === undefined || phoneNumber.length < 7) {
         phoneNumber = event['Details']['Parameters']['phoneNumber'];
     }
@@ -59,15 +64,36 @@ exports.handler = async (event, context, callback) => {
                 item2 = returnedItems.Items[i].ssmlVanityNumber;
             }
         }
-        resultMap = {
-            item1word: item1word,
-            item1: item1,
-            item2word: item2word,
-            item2: item2,
-            message: 200
-        };
-        console.log('resultMap');
-        console.log(resultMap);
+        // return all vanity numbers for web source
+        if (webSource !== undefined && webSource === 'true') {
+            resultMap = [];
+            returnedItems.Items.forEach(e => {
+                let obj = {
+                    word: e.word,
+                    vanityNumber: e.vanityNumber,
+                    parentNumber: e.parentNumber
+                }
+                resultMap.push(obj);
+            });
+            const response = {
+                statusCode: 200,
+                headers: {
+                    "Access-Control-Allow-Headers" : "Content-Type",
+                    "Access-Control-Allow-Origin": "http://alcandev.com",
+                    "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+                },
+                body: JSON.stringify(resultMap),
+            };
+            return response;
+        } else {
+            resultMap = {
+                item1word: item1word,
+                item1: item1,
+                item2word: item2word,
+                item2: item2,
+                message: 200
+            };
+        }
         callback(null, resultMap);
         return;
     }
@@ -83,8 +109,8 @@ function getItems(params) {
 }
 function formatNumber(phoneNumber) {
     let obj = {
-        "trimmedNumber": phoneNumber.trim().replace(/\+/g,'').replace(/-/g,'').replace(/\(/g,'').replace(/\)/g,'').replace(/\s/g,'').slice(-7),
-        "fullNumber": phoneNumber.trim().replace(/\+/g,'').replace(/-/g,'').replace(/\(/g,'').replace(/\)/g,'').replace(/\s/g,'')
+        "trimmedNumber": phoneNumber.trim().replace(/'/g,'').replace(/\+/g,'').replace(/-/g,'').replace(/\(/g,'').replace(/\)/g,'').replace(/\s/g,'').slice(-7),
+        "fullNumber": phoneNumber.trim().replace(/'/g,'').replace(/\+/g,'').replace(/-/g,'').replace(/\(/g,'').replace(/\)/g,'').replace(/\s/g,'')
     };
     
     if (obj['fullNumber'].length >= 11) {

@@ -29,13 +29,13 @@ Exercise
         - Description: Creates vanity numbers based on phoneNumber input variable. 
 2. Amazon Connect: Contact Flow Completed.
     - TODO add docs for this ***TODO***
-3. CloudFormation: ***TODO***
+3. BONUS: CloudFormation: ***TODO***
     - TODO create Cloud formation and add docs afterwords. 
-4. WebSite: ***TODO***
+4. BONUS: WebSite: ***TODO***
     - URL: 
     - Angular/node.js
 5. Finalize Documentation and make public ***TODO***
-    - Architecture Diagram. ***TODO***
+    - BONUS: Architecture Diagram. ***TODO***
 
 6. Write the story ***TODO***
 
