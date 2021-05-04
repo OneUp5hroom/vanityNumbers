@@ -27,8 +27,8 @@ Exercise
         - Description: Gets created vanity numbers from the results dynamoDB table. 
     - voiceFoundry-VanityNumbers-NumPair
         - Description: Creates vanity numbers based on phoneNumber input variable. 
-2. Amazon Connect: ***TODO***
-    - TODO add docs for this
+2. Amazon Connect: Contact Flow Completed.
+    - TODO add docs for this ***TODO***
 3. CloudFormation: ***TODO***
     - TODO create Cloud formation and add docs afterwords. 
 4. WebSite: ***TODO***

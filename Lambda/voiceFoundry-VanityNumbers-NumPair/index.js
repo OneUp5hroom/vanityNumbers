@@ -49,6 +49,7 @@ exports.handler = async (event, context, callback) => {
     let storedPosition;
     let startingPosition = 7;
     let phoneNumber;
+    let resultMap;
 
     phoneNumber = event.phoneNumber;
     if (phoneNumber === undefined || phoneNumber.length < 7) {
@@ -119,7 +120,7 @@ exports.handler = async (event, context, callback) => {
     // END 0s and 1s Event Handling
 
     if (objectArray.length < 3) {
-        var resultMap = {
+        resultMap = {
             message: 404
         };
         callback(null, resultMap);
@@ -375,7 +376,7 @@ exports.handler = async (event, context, callback) => {
     };
     if (wordArray.length <= 0 || wordArray === undefined) {
         // could not find any word matches for the provided number
-        var resultMap = {
+        resultMap = {
             message: 404
         };
         callback(null, resultMap);
@@ -392,7 +393,7 @@ exports.handler = async (event, context, callback) => {
       }
       
       
-    var resultMap = {
+    resultMap = {
         message: 200
     };
 
