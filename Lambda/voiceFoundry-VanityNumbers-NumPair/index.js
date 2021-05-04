@@ -360,7 +360,8 @@ exports.handler = async (event, context, callback) => {
                                     seventhNumber: seventhNumber,
                                     wordLength: element.word.length,
                                     vanityNumber: fullFormattedNumber.slice(0,3) + '-' + firstNumber + secondNumber + thirdNumber + '-' + fourthNumber + fifthNumber + sixthNumber + seventhNumber,
-                                    parentNumber: fullFormattedNumber
+                                    parentNumber: fullFormattedNumber,
+                                    ssmlVanityNumber: '<speak><prosody rate=\\"65%\\"><say-as interpret-as=\\"spell-out\\">' + fullFormattedNumber.slice(0,3) + firstNumber + secondNumber + thirdNumber + fourthNumber + fifthNumber + sixthNumber + seventhNumber + '</say-as></prosody></speak>'
                                 }
                             }
                         });

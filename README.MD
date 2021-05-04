@@ -1,12 +1,3 @@
-TODO Create Documentation
-
-
-
-
-
-
-
-
 # Project Requirements
 ## Mid-Level Development Project
 ```
@@ -25,6 +16,29 @@ Exercise
 3.	What would you have done with more time? We know you have a life. :-)
 4.	BONUS - Please include an architecture diagram.
 ```
+
+# Project Documentation
+### Deliverables
+1. Git Repo with all code and documentation: AWS Code Commit [Link](https://console.aws.amazon.com/codesuite/codecommit/repositories/amazonConnect-VanityNumbers/browse?region=us-east-1)
+2. Working Amazon Connect phone Number: 1 (214) 256-OKAY / 1 (214) 256-5293.
+### Exercise
+1. Lambda Functions:
+    - voiceFoundry-VanityNumbers-GetVanityNumbers
+        - Description: Gets created vanity numbers from the results dynamoDB table. 
+    - voiceFoundry-VanityNumbers-NumPair
+        - Description: Creates vanity numbers based on phoneNumber input variable. 
+2. Amazon Connect: ***TODO***
+    - TODO add docs for this
+3. CloudFormation: ***TODO***
+    - TODO create Cloud formation and add docs afterwords. 
+4. WebSite: ***TODO***
+    - URL: 
+    - Angular/node.js
+5. Finalize Documentation and make public ***TODO***
+    - Architecture Diagram. ***TODO***
+
+6. Write the story ***TODO***
+
 
 
 # Dev Log:
@@ -94,3 +108,4 @@ Exercise
     - EOD, got distracted with life and was not able to make as much progress as I would have liked. The call center is up and the call flow is working to the point of generating new vanity numbers and reading the top two back to the customer. The call flows quickly became overwhelming to look at and my next task for myself will be to break them out into multiple flows so they are easier to follow. 
 - 5/3/2021
     - 7:42am Because today is Monday I will have to try to make a lot of progress in a very short amount of time this evening. I will need to reserve at least one day for cleaning up documentation so I hope I will have enough time to deliver a complete project. 
+    - 6:35pm Testing is going well, I am not liking how things are sounding when the vanity numbers are read out. Researching it looks like the only way for me to hear the numbers in an acceptable way would be to integrate SSML into my database entry. This will take modifying the lambda code.. again. While editing I discovered an issue with letter placement in the Lambda code anyways, so I will need to fix that. 
