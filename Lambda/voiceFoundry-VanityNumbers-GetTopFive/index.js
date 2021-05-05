@@ -3,6 +3,9 @@ const AWS = require('aws-sdk');
 const docClient = new AWS.DynamoDB.DocumentClient({region: 'us-east-1'});
 
 exports.handler = async (event, context, callback) => {
+    let topFive = [];
+    let outputArray = [];
+    const uniqueItems = new Set();
     
     var params = {
         TableName: "voiceFoundry-VanityNumbers-Results",
@@ -20,12 +23,27 @@ exports.handler = async (event, context, callback) => {
     
     const returnedItems = await getItems(params);
     
-    const uniqueItems = new Set();
     returnedItems.Items.forEach(e => {
         uniqueItems.add(e.parentNumber);
     });
-    console.log(uniqueItems);
-    return;
+    const itorator = uniqueItems.values();
+    for (let i = 0; i < 5; i++) {
+        topFive.push(itorator.next().value);
+    }
+    returnedItems.Items.forEach(e => {
+        if (topFive.includes(e.parentNumber)) {
+            outputArray.push(e);
+        }
+    }); 
+    const response = {
+        statusCode: 200,
+        headers: {
+            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+        },
+        body: JSON.stringify(outputArray),
+    };
+    return response;
 };
 
 function getItems(params) {
