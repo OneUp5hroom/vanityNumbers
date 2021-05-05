@@ -117,4 +117,7 @@ Exercise
 - 5/4/2021
     - Started working on the website, API Gateway and updated lambda calls. Hurdle of how to pull last five items sorted by date submitted. Only way I found to do this is to set a column in dynamoDB called dateId that is set to 0 for all objects. this way I can query on it and sort by dateAdded (the timestamp of when it was generated.)
 - 5/5/2021
-    - 5:30pm The website is working for the most part, it still needs a ton of work... including making it mobile compatible.. it really only works on desktop browsers for the time being... but for these purposes it will have to be good enough since I have to finish documentation tonight!
+    - The website is working for the most part, it still needs a ton of work... including making it mobile compatible.. it really only works on desktop browsers for the time being... but for these purposes it will have to be good enough since I have to finish documentation tonight!
+    - While trying to keep everything in AWS, I decided to use their CodeCommit service instead of my typical github / AzureDevOps. Looks like this is addding an additional challenge I'll need to figure out since you cannot make a CodeCommit repo public. I will have to figure out how to migrate this repo, with history, over to github.
+    - That ended up being really easy (thank goodness) my repo has been updated to github. 
+    
