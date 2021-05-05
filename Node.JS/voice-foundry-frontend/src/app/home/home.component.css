@@ -61,3 +61,7 @@
     width: 150px;
     border-bottom: 2px solid white;
 }
+.iconButton {
+  border: none;
+  background-color: transparent;
+}
