@@ -1,11 +1,39 @@
-<p>test</p>
-<table>
-    <div *ngFor="let item of items">
-        <tr>
-            <td>
-                {{ item.parentNumber }}
-            </td>
+<h2>Last 5 caller's Vanity Numbers:</h2>
+<table class="Table">
+    <div *ngFor="let item of itemObjects; let i = index">
+        <tr class="card">
+            <th class="itemRow">
+                {{ item.formattedNumber }}
+            </th>
+            <th class="droptd">
+                <button class="iconButton" (click)="buttonClick($event)">
+                    <img id="{{ i }}" class="drop" src="../../assets/arrow_drop_down_circle_black_24dp.svg" />
+                </button>
+            </th>
         </tr>
+            <div *ngIf="!isHidden[i]" class="card details">
+                <table class="innerTable">
+                    <tr class="itemRow">
+                        <th class="itemColumn">
+                            <p>Matched Word</p>
+                        </th>
+                        <th class="itemColumn">
+                            <p>Vanity Number</p>
+                        </th>
+                    </tr>
+                    <div *ngFor="let van of items">
+                        <div *ngIf="van.parentNumber===item.parentNumber">
+                        <tr class="itemRow">
+                            <td class="itemColumn">
+                                <p>{{ van.word }}</p>
+                            </td>
+                            <td class="itemColumn">
+                                <p>{{ van.vanityNumber }}</p>
+                            </td>
+                        </tr>
+                        </div>
+                    </div>
+                </table>
+            </div>
     </div>
 </table>
-<p>after table</p>
