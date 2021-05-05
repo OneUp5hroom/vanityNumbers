@@ -9,21 +9,25 @@ import { Observable } from 'rxjs';
 export class RestAPIService {
   private baseUrl = environment.url;
 
-  constructor(private httpClient: HttpClient) { 
-    console.log('getAPIData');
+  constructor(private httpClient: HttpClient) {
   }
 
+  /*
   public getVanity(phoneNumber: string): Observable<Object> {
     const queryUrl = this.baseUrl + "?phoneNumber=" + phoneNumber + '&webSource=true';
     const response = this.httpClient.get(queryUrl);
     return response;
   }
-  public getLastFiveVanity(): Observable<Object> {
-    const queryUrl = this.baseUrl + '/topfive';
+  */
+
+  public getTopFiveVanity(): Observable<Object> {
+    const queryUrl = 'https://izi2r9woac.execute-api.us-east-1.amazonaws.com/dev/topfive';
     const response = this.httpClient.get(queryUrl);
+    console.log(response);
     return response;
   }
-  public generateVanity(phoneNumber: string): Observable<Object> {
+
+  /*public generateVanity(phoneNumber: string): Observable<Object> {
     const queryUrl = this.baseUrl;
     const body = {
       "phoneNumber": phoneNumber
@@ -31,4 +35,5 @@ export class RestAPIService {
     const response = this.httpClient.post(queryUrl, body);
     return response;
   }
+  */
 }
