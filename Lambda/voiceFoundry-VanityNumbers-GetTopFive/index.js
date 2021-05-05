@@ -39,6 +39,7 @@ exports.handler = async (event, context, callback) => {
         statusCode: 200,
         headers: {
             "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "http://okay.alcandev.com",
             "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
         },
         body: JSON.stringify(outputArray),

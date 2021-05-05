@@ -46,6 +46,19 @@ exports.handler = async (event, context, callback) => {
     const returnedItems = await getItems(params);
     console.log(returnedItems);
     if (returnedItems.Items === undefined || returnedItems.Items.length < 1) {
+        if (webSource !== undefined && webSource === 'true') {
+            let obj = {"none": "none"}
+            const response = {
+                statusCode: 200,
+                headers: {
+                    "Access-Control-Allow-Headers" : "Content-Type",
+                    "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                    "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+                },
+                body: JSON.stringify(obj),
+            };
+            return response;
+        }
         // no records found
         resultMap = {
             message: 404
@@ -72,14 +85,14 @@ exports.handler = async (event, context, callback) => {
                     word: e.word,
                     vanityNumber: e.vanityNumber,
                     parentNumber: e.parentNumber
-                }
+                };
                 resultMap.push(obj);
             });
             const response = {
                 statusCode: 200,
                 headers: {
                     "Access-Control-Allow-Headers" : "Content-Type",
-                    "Access-Control-Allow-Origin": "http://alcandev.com",
+                    "Access-Control-Allow-Origin": "http://okay.alcandev.com",
                     "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
                 },
                 body: JSON.stringify(resultMap),

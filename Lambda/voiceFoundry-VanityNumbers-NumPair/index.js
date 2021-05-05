@@ -51,8 +51,17 @@ exports.handler = async (event, context, callback) => {
     let currentPosition;
     let phoneNumber;
     let resultMap;
-
-    phoneNumber = event.phoneNumber;
+    let restAPI = false;
+    
+    // check if coming from POST API call
+    if (event.body !== undefined && JSON.parse(event.body).phoneNumber.length > 0 ) {
+        phoneNumber = JSON.parse(event.body).phoneNumber;
+        restAPI = true;
+    } else {
+        phoneNumber = event.phoneNumber;
+    }
+    
+    // check if coming from Call Flow
     if (phoneNumber === undefined || phoneNumber.length < 7) {
         phoneNumber = event['Details']['Parameters']['phoneNumber'];
     }
@@ -121,6 +130,19 @@ exports.handler = async (event, context, callback) => {
     // END 0s and 1s Event Handling
 
     if (objectArray.length < 3) {
+        if (restAPI) {
+            let obj = {"ret": "none"};
+            const response = {
+                statusCode: 200,
+                headers: {
+                    "Access-Control-Allow-Headers" : "Content-Type",
+                    "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                    "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+                },
+                body: JSON.stringify(obj),
+            };
+            return response;
+        }
         resultMap = {
             message: 404
         };
@@ -381,6 +403,19 @@ exports.handler = async (event, context, callback) => {
     };
     if (wordArray.length <= 0 || wordArray === undefined) {
         // could not find any word matches for the provided number
+        if (restAPI) {
+            let obj = {"ret": "none"};
+            const response = {
+                statusCode: 200,
+                headers: {
+                    "Access-Control-Allow-Headers" : "Content-Type",
+                    "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                    "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+                },
+                body: JSON.stringify(obj),
+            };
+            return response;
+        }
         resultMap = {
             message: 404
         };
@@ -396,6 +431,19 @@ exports.handler = async (event, context, callback) => {
       } catch (e) {
         console.log(e.message);
       }
+    if (restAPI) {
+        let obj = {"ret": "success"};
+        const response = {
+            statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Headers" : "Content-Type",
+                "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+            },
+            body: JSON.stringify(obj),
+        };
+        return response;
+    }
     
     resultMap = {
         message: 200

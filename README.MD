@@ -20,20 +20,22 @@ Exercise
 # Project Documentation
 ### Deliverables
 1. Git Repo with all code and documentation: AWS Code Commit [Link](https://console.aws.amazon.com/codesuite/codecommit/repositories/amazonConnect-VanityNumbers/browse?region=us-east-1)
-2. Working Amazon Connect phone Number: 1 (214) 256-OKAY / 1 (214) 256-5293.
+2. Working Amazon Connect phone Number: 1 (214) 25-OKAY-3 / 1 (214) 256-5293.
 ### Exercise
 1. Lambda Functions:
     - voiceFoundry-VanityNumbers-GetVanityNumbers
         - Description: Gets created vanity numbers from the results dynamoDB table. 
     - voiceFoundry-VanityNumbers-NumPair
-        - Description: Creates vanity numbers based on phoneNumber input variable. 
+        - Description: Creates vanity numbers based on phoneNumber input variable.
+    - voiceFoundry-VanityNumbers-GetTopFive
+        - Description: Gets the last five parentNumbers in the results dynamoDB table and returns their data.
 2. Amazon Connect: Contact Flow Completed.
     - TODO add docs for this ***TODO***
 3. BONUS: CloudFormation: ***TODO***
-    - TODO create Cloud formation and add docs afterwords. 
-4. BONUS: WebSite: ***TODO***
-    - URL: 
-    - Angular/node.js
+    - I was unable to complete this step, it was something I was already not confident I could complete in an efficient manor because it would have been my first CloudFormation document. One limitation of my current role is this task is offloaded to the Cloud DevOps folks so I do not have experience with it. In the end I was hopeful that I would have the time to complete this step, if not purely for my own education, but I ran out of time. This is on the list of things I would have liked to finish if I had more time. 
+4. BONUS: WebSite:
+    - URL: okay.alcandev.com
+    - AngularCLI v11.2.10 /node.js v16.0.0 
 5. Finalize Documentation and make public ***TODO***
     - BONUS: Architecture Diagram. ***TODO***
 
@@ -114,3 +116,5 @@ Exercise
     - 8:56PM Updates to the call flow are complete, I think I am getting the hang of this.
 - 5/4/2021
     - Started working on the website, API Gateway and updated lambda calls. Hurdle of how to pull last five items sorted by date submitted. Only way I found to do this is to set a column in dynamoDB called dateId that is set to 0 for all objects. this way I can query on it and sort by dateAdded (the timestamp of when it was generated.)
+- 5/5/2021
+    - 5:30pm The website is working for the most part, it still needs a ton of work... including making it mobile compatible.. it really only works on desktop browsers for the time being... but for these purposes it will have to be good enough since I have to finish documentation tonight!

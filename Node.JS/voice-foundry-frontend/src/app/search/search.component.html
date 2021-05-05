@@ -1,57 +1,30 @@
 <div class="pageContainer">
-    <form action="/action_page.php">
-        <label class="phoneNumberLabel" for="PhoneNumber">Phone Number: </label>
-        <input class="phoneNumberinput" type="tel" id="PhoneNumber" name="PhoneNumber" placeholder="1-555-555-0123"><br />
-        <input type="submit" value="Submit" class="submit">
-    </form>
+    <p class="phoneNumberLabel">PhoneNumber:</p>
+    <input class="phoneNumberinput" type="text" [formControl]="phoneNumberControl">
+    <button class="button" (click)="buttonClick($event)"> Submit </button>
+    <div *ngIf="noneFound" class="warning">
+        <p>I was unable to find any vanity numbers for this number.</p>
+    </div>
 
-    <h2>Your Current Vanity Number</h2>
-    <p class="CurrentNumber">1-800-Flowers</p>
     <h3>Top 5 Vanity Numbers for your Number</h3>
     <Table class="numberTable">
         <tr>
-            <th></th>
-            <th></th>
+            <th>
+                <p>Matched Word</p>
+            </th>
+            <th>
+                <p>Vanity Number</p>
+            </th>
         </tr>
-        <tr>
-            <td class="btnColumn">
-                <button class="button" >Pick Me</button>
-            </td>
-            <td class="textColumn">
-                <span class="choice">1-800-FLOWERS</span>
-            </td>
-        </tr>
-        <tr>
-            <td class="btnColumn">
-                <button class="button">Pick Me</button>
-            </td>
-            <td class="textColumn">
-                <span class="choice">1-800-FLOWERS</span>
-            </td>
-        </tr>
-        <tr>
-            <td class="btnColumn">
-                <button class="button">Pick Me</button>
-            </td>
-            <td class="textColumn">
-                <span class="choice">1-800-FLOWERS</span>
-            </td>
-        </tr>
-        <tr>
-            <td class="btnColumn">
-                <button class="button">Pick Me</button>
-            </td>
-            <td class="textColumn">
-                <span class="choice">1-800-FLOWERS</span>
-            </td>
-        </tr>
-        <tr>
-            <td class="btnColumn">
-                <button class="button">Pick Me</button>
-            </td>
-            <td class="textColumn">
-                <span class="choice">1-800-FLOWERS</span>
-            </td>
-        </tr>
+        <div *ngFor="let num of numbers">
+            <tr>
+                <td>
+                    <span class="choice">{{ num.word }}</span>
+                </td>
+                <td>
+                    <span class="choice">{{ num.vanityNumber }}</span>
+                </td>
+            </tr>
+        </div>
     </Table>
 </div>

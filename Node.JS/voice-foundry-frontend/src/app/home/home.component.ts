@@ -11,10 +11,8 @@ export class HomeComponent implements OnInit {
   public uniqueItems = new Set();
   public isHidden: Array<boolean> = [];
   public itemObjects: Array<any> = [];
-  constructor(private rest: RestAPIService) { 
-    console.log(this.items);
-    
-  }
+  
+  constructor(private rest: RestAPIService) {}
 
   ngOnInit(): void {
     this.rest.getTopFiveVanity().subscribe((returned: any) => {
