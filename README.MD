@@ -39,85 +39,69 @@ Exercise
 5. Finalize Documentation and make public ***TODO***
     - BONUS: Architecture Diagram. ***TODO***
 
-6. Write the story ***TODO***
 
+1.	Record your reasons for implementing the solution the way you did, struggles you faced and problems you overcame.
+2.	What shortcuts did you take that would be a bad practice in production?
+3.	What would you have done with more time? We know you have a life. :-)
 
+6. Write the story 
 
-# Dev Log:
-- 4/28/2021
-    - 7:47pm - Accept Challenge from Belinda Nadalin
-    - 8:00pm - Create Code Repo https://git-codecommit.us-east-1.amazonaws.com/v1/repos/amazonConnect-VanityNumbers
-    - 8:30pm - Create two DynamoDB tables, one to map phone number to available characters and another to house a dictionary of possible words. Using a scrabble dictionary and using PowerShell to filter out any words over 7 characters Long (Maximum a US phone number can have excluding the country code and area code) or under 4 characters because we at least want the last four for a good vanity number.
-        - voiceFoundry-VanityNumbers-NumPair
-            - Schema
+### Retrospective
 
-            |Number|Characters|
-            |:----:|:---------|
-            |   2  | {"A", "B", "C"} |
-            
-        - voiceFoundry-VanityNumbers-Dictionary
-            - Schema
-            
-            |Id|Word|
-            |:----:|:---------|
-            |   0  | "ABANDON" |
-            |   1   | "ABDOMEN" |
-    - 10:48pm - Sorting of applicable words is completed and stored locally in a JSON file, need to bulk import into DynamoDB tomorrow.
+#### Final Thoughts (TL;DR)
+This project ended up being much more of a brain teaser than I initially expected but, I learned a lot about AWS resources I've never played with before. I had challenges this week that ranged from data issues, to logic problems, to the general struggle of learning a new tool. Yet, in the end I was able to produce a product I can be proud of... it is in no way ready for production! Thank you for providing this challenge, I had a ton of fun with it and I hope you like my fake company "OKAY Industries". (The name was chosen because the phone number Amazon Connect generated came out with "1-214-25OKAY3" when I ran it through my lambda function.)
 
-- 4/29/2021    
-    - 7:30am - Attempting to learn DynamoDB bulk import before work hours start.
-    - EOD - I gave up on bulk import and just let a script upload data for a few hours one by one, had a day job to get to :). All Dictionary items are now in the DynamoDB. 
-
-- 4/30/2021 
-    - (Note: My current Employer has 9/80 schedules, meaning we work 9 hours a day and then get every other friday off. I lucked out and this is my 9/80 friday! Meaning my only goals for today are School and this project. I am coming up on finals for Calc 1 so I have to finish that homework / study time before I can really get started on this sadly... this is more fun than Calculus! lol)
-
-    - 9:00am Goal Setting before starting on Calculus. Today is lambda day, time to build the functions for interacting with the DynamoDB service.
-        - Goals for today 
-            - Complete Lambda functions for calculating the Vanity Numbers
-                - Get number matches from DynamoDB Table voiceFoundry-VanityNumbers-NumPair.
-                - Query DynamoDB table voiceFoundry-VanityNumbers-Dictionary for possible word matches.
-            - Create new DynamoDB table to store results
-                - Create Lambda functions for puts and gets on this database.
-    - 9:11am Calculus Time!
-    - 3:00pm Starting on Lambda Functions
-    - EOD - Lambda function for generating the vanity number is mostly working. The majority of the issues I have been having are with DynamoDB and finding an economical way to pull words out of my dictionary database. I have settled on a Global Secondary Index based on a column that is the first letter of each word. I will let the Index run over night. See FixDynamoDB.ps1 for adding the FirstLetter Column.         
-    - voiceFoundry-VanityNumbers-Dictionary
-        - New Schema
-            
-        |Id|FirstLetter (GSI)|Word|
-        |:----:|:---:|:---------|
-        |   0  | A | "ABANDON" |
-        |   1  | A | "ABDOMEN" |
-
-- 5/1/2021
-    - 7:36AM The Global Secondary Index worked for allowing me to pull all words with my desired starting letter, this is a big win. The downside is my database of words is too large to be reasonably used. Currently I have 72,997 words available in my dictionary. I plan to cull my data down to include ONLY words with 7 characters instead of anything between 4 and 7 characters as it is now. Hopefully that will bring the word count down enough that we can efficiently look through applicable words in Lambda. ___I would have preffered to keep it where the vanity numbers were not locked to "full length" vanity numbers, but with my limited time I believe this is the best route. I hope it does not bite me in the end with not having enough words to match every possible combination of numbers!___
-    - 9:30AM Culling completed new total count of available words is: 32,899... next idea to keep memory use low in Lambda is to break each remaining word out into individual characters, that way I can query the DB in loops and only pull out words that are actual matches instead of pulling large data sets down into lambda and then iterating over them. This may or may not work out, but I can have it run while I am off doing other things (have a baby shower to go to for a friend this morning). See CharacterBreakOut.ps1.
-    - 9:46AM Found my Culling messed up my indexing, having to fix that... see fixIndex.ps1
-    - 1:38pm realized in testing that 0's do not have any letters assigned to them on a touchtone phone, meaning I will need to have error handling to cover phone numbers that have 0's in the last 7 digits of the number.
-    - 2:45pm lambda funciton is working, but limiting my returns to 7 character "full" vanity numbers is very limiting to the results, especially with the 0's issue. To Fulfill returning a top 3 or 5 numbers I will need to add more options to the dictionary. Meaning the work I did earlier to Cull the number of results is actually hurting results... I will need to go back to the full dictionary, but keep the current schema. (NewDictionaryIngest.ps1)
-        - New Schema
-
-        |Id|FirstLetter | Second Letter | Third Letter |Word|
-        |:----:|:---:|:---:|:---:|:---------|
-        |   0  | H | A | T | "HAT" |
+#### Project Constraints
+My initial approach to the problem was to try to put some constraints around what would make for a minimally viable product. Typically this would be a meeting or two.. or five.. with the customer. Since this was just an exercise I decided to try to form these constraints on my own. I decided that my constraints would be this application would only provide words that are longer than 4 characters and no more than 7 characters, this seemed like a good fit for a phone number and overall was within the normal for vanity numbers I found on Google. 
     
-    - 8:27pm Finally got the filtering out 0 working and pulling smaller words from dynamoDB. the use of attribute_not_exists() was a crucial piece and using null will not work as expected in dynamoDB. Currently the Lambda function will pull words in the middle of the phone number, for example if the number is 1-800-350-3647 one result would be 1-800-350-DOG7. I do not really like this, but at this time I need to move on. ___If I find I have more time later on this is one thing I would like to fix.___ 
-    - EOD tomorrow I will need to figure out plugging the words back into the number in the Lambda function and returning that to the final DynamoDB table. After that is complete we should be off to the races. 
-- 5/2/2021
-    - 7:30am Need to finish mapping the found words to the proper placement in the phone number and returning the vanity numbers to the customer.
-    - 11:00am Lambda function is complete and working properly. Time to start on Amazon Connect.
-    - 2:00pm base Amazon Contact Flow is working as expected, need to create a Lambda function to read from the database of submitted items so the contact flow can read the results back to the customer.
-    - EOD, got distracted with life and was not able to make as much progress as I would have liked. The call center is up and the call flow is working to the point of generating new vanity numbers and reading the top two back to the customer. The call flows quickly became overwhelming to look at and my next task for myself will be to break them out into multiple flows so they are easier to follow. 
-- 5/3/2021
-    - 7:42am Because today is Monday I will have to try to make a lot of progress in a very short amount of time this evening. I will need to reserve at least one day for cleaning up documentation so I hope I will have enough time to deliver a complete project. 
-    - 6:35pm Testing is going well, I am not liking how things are sounding when the vanity numbers are read out. Researching it looks like the only way for me to hear the numbers in an acceptable way would be to integrate SSML into my database entry. This will take modifying the lambda code.. again. While editing I discovered an issue with letter placement in the Lambda code anyways, so I will need to fix that. 
-    - 8:42pm Fixed Vanity Number placement in word, and added SSML integration. I think we are at a good place for the contact flow. I would like to integrate LEX into the contact flow, but I do not think I will have the time. Instead I will try to knock off some more bonus items.
-    - 8:49PM while testing I admit it is a bit weird on the reading of the vanity numbers, I am going to add where it will read the word first, then the number to help it be less jarring. 
-    - 8:56PM Updates to the call flow are complete, I think I am getting the hang of this.
-- 5/4/2021
-    - Started working on the website, API Gateway and updated lambda calls. Hurdle of how to pull last five items sorted by date submitted. Only way I found to do this is to set a column in dynamoDB called dateId that is set to 0 for all objects. this way I can query on it and sort by dateAdded (the timestamp of when it was generated.)
-- 5/5/2021
-    - The website is working for the most part, it still needs a ton of work... including making it mobile compatible.. it really only works on desktop browsers for the time being... but for these purposes it will have to be good enough since I have to finish documentation tonight!
-    - While trying to keep everything in AWS, I decided to use their CodeCommit service instead of my typical github / AzureDevOps. Looks like this is addding an additional challenge I'll need to figure out since you cannot make a CodeCommit repo public. I will have to figure out how to migrate this repo, with history, over to github.
-    - That ended up being really easy (thank goodness) my repo has been updated to github. 
-    
+#### The Data
+After setting constraints my next step was to build my dataset. For this portion of the project I pulled heavily from my experience in data analytics / visualization. In hindsight, my past experience caused a lot of issues with this project because the majority of my experience with data is in relational databases. 
+
+To start on the data I had to find a source, and the only easily ingestible source I found was a simple list of words taken from the board game Scrabble - [Data Source](https://raw.githubusercontent.com/jmlewis/valett/master/scrabble/sowpods.txt). After gathering the data I placed it in my first dynamoDB table with a very basic Schema... I bet you can see here, that this caused major issues as I started to build queries for dynamoDB.
+- voiceFoundry-VanityNumbers-Dictionary
+	- Schema
+
+  |Id|Word|
+  |:----:|:---------|
+  |   0  | "ABANDON" |
+  |   1   | "ABDOMEN" |
+
+Next I prepared a simple dynamoDB table to map a phone keypad to the available letters for each number. This table did not change much throughout the project after it's initial creation.
+- voiceFoundry-VanityNumbers-NumPair
+	- Schema
+
+  |Number|Characters|
+  |:----:|:---------|
+  |   2  | {"A", "B", "C"} |
+  
+Using a combination of queries from the NumPair table and the Dictionary table I started to build out my first function to generate the desired vanity numbers. While building these queries I quickly found issues with response time from my Dictionary database, which was sitting at 72,997 items. At the time I believed the reason for my slow query time was I had too many items in my database. This thought started me down a road of what felt like never ending rebuilds of the Dictionary database table trying to remove unneeded words. In the end I had a small table of ONLY 7 letter words with my item count being 32,899. __This was my first real struggle__. Long story short, after burning through 4 of my 7 available days for this project just on data and building my queries, I finally had something that worked and it worked well. I extended my dictionary table's schema to work better with how queries run in DynamoDB and was able to rebuild my dictionary one final time to where it is today. (74,290 items). This schema change plus adding a global secondary index on the FirstLetter column made it possible to pull down vanity number matches in under 3 seconds (usually). I also increased my library count by increasing my scope to include three letter words.
+
+- voiceFoundry-VanityNumbers-Dictionary
+	- Final Schema
+
+  |Id|Word|FirstLetter|SecondLetter|ThirdLetter|FourthLetter|FifthLetter|SixthLetter|SeventhLetter
+  |:----:|:---------|:--|:--|:--|:--|:--|:--|:--|
+  |   0  | "ABANDON" | "A" | "B" | "A" | "N" | "D" | "O" | "N" |
+  
+#### Lambda
+Data issues aside, Lambda provided plenty of its own challenges. For this project I created a total of 3 lambda scripts, but looking back on it __if I were to do it again or had more time__ I would split my main function out into multiple scripts.
+- voiceFoundry-VanityNumbers-GetVanityNumbers
+	- Description: Gets created vanity numbers from the results dynamoDB table. 
+- voiceFoundry-VanityNumbers-NumPair
+	- Description: Creates vanity numbers based on phoneNumber input variable.
+- voiceFoundry-VanityNumbers-GetTopFive
+	- Description: Gets the last five parentNumbers in the results dynamoDB table and returns their data.
+
+My biggest struggle when it came to these lambda functions was in the NumPair function, figuring out how to keep the DynamoDB query fast, but also being able to handle the data on the return and acuratly place the matched words in the phone number __was a real challenge__. I had several instances where the vanity number should have been 907-350-5KON, but it ended up placing the word incorrectly as 907 35K-ON66. Working through the logic puzzle of how to fix this issue took a long time, but was satisfying in the end when I got it working. I am not the most confident in my solution to this issue, if this were to go to production it would need extensive testing as I continued to find bugs with it as I moved forward with development.
+
+#### Contact Flow
+Amazon connect is a completely new part of AWS to me, and it was a fun technology to dip my toes into. The first thing I did for this part of the project is pull up Pluralsight, I consider Pluralsight my secret weapon and will probably keep a subscription for the rest of my career. After a surprisingly short tutorial, I was off to the races in creating my contact flow. I honestly did not run into many challenges with contact flows other than figuring out how to use SSML, how to work with parameters, and the fact that the single contact flow I started with became unmanageable quickly! The biggest improvement I made here was completely remaking the contact flow as modularized pieces that called each other instead of having the full workflow crammed into one. 
+
+#### Website
+The last thing I was able to accomplish for this project was building a quick and messy serverless Angular/Node.JS website to display the results of the contact flow. __This website has a LOT of things that would need to be cleaned up before going to production__. I was running low on time when I finally got to the point of being able to work on the website, but luckily I had several advantages in this department. I had already created and tested my lambda functions, I had an available domain to use in Route53 and using the AngularCLI I was able to get a quick site published with the very minimal functionality. I will admit I increased the scope a bit on the website from just displaying the last five numbers to adding a lookup page as well, this wasn't too difficult since it leveraged existing functions and I think it makes the website much more usable because you can also generate vanity numbers from the website using the lookup.
+
+#### Git
+The only remaining hurdle I had on my last day of development was one that was quite unexpected. I had not understood when I first created my repo using AWS CodeCommit that CodeCommit repos cannot be public, meaning I could not share this documentation / repo with anyone without adding them to my personal IAM. Luckily, moving my repo with all of the history was quite easy and following this tutorial worked like a charm! [Link] (https://www.atlassian.com/git/tutorials/git-move-repository).
+
+#### Conclusion
+In the end I am very proud of what I was able to create in a week and I am very happy with this vetting process. I've always felt like in person code tests while three people you don't know are watching you is not a great way to really test a person's abilities. Thank you for the opportunity to participate in this challenge, I learned way more than I thought I would going into it. My only real regret was not being able to get to building out the CloudFormation template, I have no experience in CloudFormation because our DevOps team at my employeer handles those for us.
