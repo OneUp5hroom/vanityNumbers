@@ -6,7 +6,8 @@ exports.handler = async (event, context, callback) => {
     let topFive = [];
     let outputArray = [];
     const uniqueItems = new Set();
-    
+    let sender = event.headers.origin;
+
     var params = {
         TableName: "voiceFoundry-VanityNumbers-Results",
         IndexName: "sortedNumbers",
@@ -39,7 +40,7 @@ exports.handler = async (event, context, callback) => {
         statusCode: 200,
         headers: {
             "Access-Control-Allow-Headers" : "Content-Type",
-            "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+            "Access-Control-Allow-Origin": sender,
             "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
         },
         body: JSON.stringify(outputArray),
