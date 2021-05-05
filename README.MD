@@ -34,7 +34,7 @@ Exercise
 3. BONUS: CloudFormation: ***TODO***
     - I was unable to complete this step, it was something I was already not confident I could complete in an efficient manor because it would have been my first CloudFormation document. One limitation of my current role is this task is offloaded to the Cloud DevOps folks so I do not have experience with it. In the end I was hopeful that I would have the time to complete this step, if not purely for my own education, but I ran out of time. This is on the list of things I would have liked to finish if I had more time. 
 4. BONUS: WebSite:
-    - URL: okay.alcandev.com
+    - URL: [okay.alcandev.com](okay.alcandev.com)
     - AngularCLI v11.2.10 /node.js v16.0.0 
 5. Finalize Documentation and make public ***TODO***
     - BONUS: Architecture Diagram. ***TODO***
