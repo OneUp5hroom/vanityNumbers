@@ -52,11 +52,13 @@ exports.handler = async (event, context, callback) => {
     let phoneNumber;
     let resultMap;
     let restAPI = false;
+    let sender;
     
     // check if coming from POST API call
     if (event.body !== undefined && JSON.parse(event.body).phoneNumber.length > 0 ) {
         phoneNumber = JSON.parse(event.body).phoneNumber;
         restAPI = true;
+        sender = event.headers.origin;
     } else {
         phoneNumber = event.phoneNumber;
     }
@@ -136,7 +138,7 @@ exports.handler = async (event, context, callback) => {
                 statusCode: 200,
                 headers: {
                     "Access-Control-Allow-Headers" : "Content-Type",
-                    "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                    "Access-Control-Allow-Origin": sender,
                     "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
                 },
                 body: JSON.stringify(obj),
@@ -409,7 +411,7 @@ exports.handler = async (event, context, callback) => {
                 statusCode: 200,
                 headers: {
                     "Access-Control-Allow-Headers" : "Content-Type",
-                    "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                    "Access-Control-Allow-Origin": sender,
                     "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
                 },
                 body: JSON.stringify(obj),
@@ -437,7 +439,7 @@ exports.handler = async (event, context, callback) => {
             statusCode: 200,
             headers: {
                 "Access-Control-Allow-Headers" : "Content-Type",
-                "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                "Access-Control-Allow-Origin": sender,
                 "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
             },
             body: JSON.stringify(obj),

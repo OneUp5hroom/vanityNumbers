@@ -42,6 +42,8 @@
 
   .toolbar img {
     margin: 10px 0 0 20px;
+    max-width: 90%;
+    height: 170%;
   }
 
   .toolbar #twitter-logo {

@@ -10,16 +10,32 @@ exports.handler = async (event, context, callback) => {
     let item2word;
     let resultMap;
     let webSource;
+    let sender;
 
-    console.log(event);
     // Websource & test parameters
-    phoneNumber = event.queryStringParameters.phoneNumber;
-    webSource = event.queryStringParameters.webSource;
+    if (event.queryStringParameters !== undefined) {
+        phoneNumber = event.queryStringParameters.phoneNumber;
+        webSource = event.queryStringParameters.webSource;
+        sender = event.headers.origin;
+    }
 
     if (phoneNumber === undefined || phoneNumber.length < 7) {
         phoneNumber = event['Details']['Parameters']['phoneNumber'];
     }
     if (phoneNumber === undefined || phoneNumber.length < 7) {
+        if (webSource !== undefined && webSource === 'true') {
+            let obj = {"none": "none"}
+            const response = {
+                statusCode: 200,
+                headers: {
+                    "Access-Control-Allow-Headers" : "Content-Type",
+                    "Access-Control-Allow-Origin": sender,
+                    "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+                },
+                body: JSON.stringify(obj),
+            };
+            return response;
+        }
         // incorrect parameter defined, return 500
         resultMap = {
             message: 500
@@ -29,8 +45,6 @@ exports.handler = async (event, context, callback) => {
     }
 
     phoneNumber = formatNumber(phoneNumber).fullNumber;
-    console.log('phoneNumber');
-    console.log(phoneNumber);
     const params = {
         TableName: "voiceFoundry-VanityNumbers-Results",
         IndexName: "parentNumberIndex",
@@ -44,7 +58,6 @@ exports.handler = async (event, context, callback) => {
         ScanIndexForward: false
     };
     const returnedItems = await getItems(params);
-    console.log(returnedItems);
     if (returnedItems.Items === undefined || returnedItems.Items.length < 1) {
         if (webSource !== undefined && webSource === 'true') {
             let obj = {"none": "none"}
@@ -52,7 +65,7 @@ exports.handler = async (event, context, callback) => {
                 statusCode: 200,
                 headers: {
                     "Access-Control-Allow-Headers" : "Content-Type",
-                    "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                    "Access-Control-Allow-Origin": sender,
                     "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
                 },
                 body: JSON.stringify(obj),
@@ -92,7 +105,7 @@ exports.handler = async (event, context, callback) => {
                 statusCode: 200,
                 headers: {
                     "Access-Control-Allow-Headers" : "Content-Type",
-                    "Access-Control-Allow-Origin": "http://okay.alcandev.com",
+                    "Access-Control-Allow-Origin": sender,
                     "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
                 },
                 body: JSON.stringify(resultMap),
