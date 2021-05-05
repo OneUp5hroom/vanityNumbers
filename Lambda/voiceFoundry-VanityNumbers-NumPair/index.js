@@ -48,6 +48,7 @@ exports.handler = async (event, context, callback) => {
     let upperBound;
     let storedPosition;
     let startingPosition = 7;
+    let currentPosition;
     let phoneNumber;
     let resultMap;
 
@@ -128,9 +129,14 @@ exports.handler = async (event, context, callback) => {
     } else {
         upperBound = objectArray.length - 2;
     }
-
+    
+    // Loop through the available Digits
+    console.log(objectArray);
     for (let o = 0; o < upperBound; o++) {
-        startingPosition = startingPosition - o;
+        currentPosition = startingPosition - o;
+        console.log('currentPosition: ' + currentPosition);
+        
+        // Loop through the three available letters for the digit.
         for (let i = 0; i < 3; i++) {
             // There is probably a better way to do this... but I needed to filter on if the
             // index existed in the array to avoid errors on undefined. 
@@ -288,11 +294,12 @@ exports.handler = async (event, context, callback) => {
                 }
             };
             const values = await getItems(wordQuery);
-
+            console.log('---values---');
+            console.log(values);
             if (values.Items.length > 0 && values.Items !== undefined) {
                 values.Items.forEach(element => {
                     let date = new Date();
-                    switch (startingPosition) {
+                    switch (currentPosition) {
                         case 7:
                             if (element.word[0]) { firstNumber = element.word[0] } else { firstNumber = firstNumberOrig }
                             if (element.word[1]) { secondNumber = element.word[1] } else { secondNumber = secondNumberOrig }
@@ -301,6 +308,8 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[4]) { fifthNumber = element.word[4] } else { fifthNumber = fifthNumberOrig }
                             if (element.word[5]) { sixthNumber = element.word[5] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[6]) { seventhNumber = element.word[6] } else { seventhNumber = seventhNumberOrig }
+                            console.log('case: ' + currentPosition);
+                            console.log(fullFormattedNumber.slice(0,3) + '-' + firstNumber + secondNumber + thirdNumber + '-' + fourthNumber + fifthNumber + sixthNumber + seventhNumber);
                             break;
                         case 6:
                             firstNumber = firstNumberOrig;
@@ -310,6 +319,8 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[3]) { fifthNumber = element.word[3] } else { fifthNumber = fifthNumberOrig }
                             if (element.word[4]) { sixthNumber = element.word[4] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[5]) { seventhNumber = element.word[5] } else { seventhNumber = seventhNumberOrig }
+                            console.log('case: ' + currentPosition);
+                            console.log(fullFormattedNumber.slice(0,3) + '-' + firstNumber + secondNumber + thirdNumber + '-' + fourthNumber + fifthNumber + sixthNumber + seventhNumber);
                             break;
                         case 5: 
                             firstNumber = firstNumberOrig;
@@ -319,6 +330,8 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[2]) { fifthNumber = element.word[2] } else { fifthNumber = fifthNumberOrig }
                             if (element.word[3]) { sixthNumber = element.word[3] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[4]) { seventhNumber = element.word[4] } else { seventhNumber = seventhNumberOrig }
+                            console.log('case: ' + currentPosition);
+                            console.log(fullFormattedNumber.slice(0,3) + '-' + firstNumber + secondNumber + thirdNumber + '-' + fourthNumber + fifthNumber + sixthNumber + seventhNumber);
                             break;
                         case 4: 
                             firstNumber = firstNumberOrig;
@@ -328,6 +341,8 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[1]) { fifthNumber = element.word[1] } else { fifthNumber = fifthNumberOrig }
                             if (element.word[2]) { sixthNumber = element.word[2] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[3]) { seventhNumber = element.word[3] } else { seventhNumber = seventhNumberOrig }
+                            console.log('case: ' + currentPosition);
+                            console.log(fullFormattedNumber.slice(0,3) + '-' + firstNumber + secondNumber + thirdNumber + '-' + fourthNumber + fifthNumber + sixthNumber + seventhNumber);
                             break;
                         case 3: 
                             firstNumber = firstNumberOrig;
@@ -337,6 +352,8 @@ exports.handler = async (event, context, callback) => {
                             if (element.word[0]) { fifthNumber = element.word[0] } else { fifthNumber = fifthNumberOrig }
                             if (element.word[1]) { sixthNumber = element.word[1] } else { sixthNumber = sixthNumberOrig }
                             if (element.word[2]) { seventhNumber = element.word[2] } else { seventhNumber = seventhNumberOrig }
+                            console.log('case: ' + currentPosition);
+                            console.log(fullFormattedNumber.slice(0,3) + '-' + firstNumber + secondNumber + thirdNumber + '-' + fourthNumber + fifthNumber + sixthNumber + seventhNumber);
                             break;
                         default: 
                             break;
@@ -349,6 +366,8 @@ exports.handler = async (event, context, callback) => {
                             PutRequest: {
                                 Item: {
                                     Id: date.getTime() + Math.floor(Math.random() * 50),
+                                    dateAdded: date.getTime(),
+                                    dateId: 0,
                                     word: element.word,
                                     firstNumber: firstNumber,
                                     secondNumber: secondNumber,
