@@ -103,8 +103,8 @@ Exercise
     |00|4         |1620235398822|0 |F|L|O|W|E|R|S|8003569377|\<speak\>\<prosody rate\=\"65%\"\>\<say-as interpret-as\=\"spell-out\"\>800FLOWERS\<\/say-as\>\<\/prosody\>\<\/speak\>|800-FLO-WERS|FLOWERS|
 
 ### Amazon Connect
-    - Amazon Connect phone Number: 1 (214) 25-OKAY-3 / 1 (214) 256-5293.
-    - See [Contact Flow Diagrams](./AmazonConnectDiagrams.md)
+- Amazon Connect phone Number: 1 (214) 25-OKAY-3 / 1 (214) 256-5293.
+- See [Contact Flow Diagrams](./AmazonConnectDiagrams.md)
 
 ### Retrospective
 
