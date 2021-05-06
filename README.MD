@@ -49,7 +49,7 @@ Exercise
 ### Website
 - URL: [okay.alcandev.com](http://okay.alcandev.com)
 
-            - Infrastructure: 
+            Infrastructure: 
             - Code Deployment: AWS S3 bucket
             - API: AWS API Gateway
             - Compute: AWS Lambda (Node 14.x)
