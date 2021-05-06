@@ -43,11 +43,65 @@ Exercise
 ### Network Diagram
 ![NetworkDiagram](https://user-images.githubusercontent.com/29815567/117233085-0e5e2180-ade8-11eb-93fe-2e547bfc63e1.png)
 
+### Amazon API Gateway
+    
+### Website
+    - URL: [okay.alcandev.com](http://okay.alcandev.com)
+    - Infrastructure: 
+    - Code Deployment: AWS S3 bucket
+    - API: AWS API Gateway
+    - Compute: AWS Lambda (Node 14.x)
+    - Database: AWS DynamoDB
 
+    - Code Base:
+        - GitHub Repo: https://github.com/OneUp5hroom/vanityNumbers
+        - Angular CLI: 11.2.10
+        - Node: 16.0.0
+        - OS: win32 x64
+        - @angular-devkit/architect       0.1102.10
+        - @angular-devkit/build-angular   0.1102.10
+        - @angular-devkit/core            11.2.10
+        - @angular-devkit/schematics      11.2.10
+        - @angular/cli                    11.2.10
+        - @schematics/angular             11.2.10
+        - @schematics/update              0.1102.10
+        - rxjs                            6.6.7
+        - typescript                      4.1.5
+### Lambda Functions
+    - voiceFoundry-VanityNumbers-GetVanityNumbers
+        - Description: Gets created vanity numbers from the results dynamoDB table. 
+    - voiceFoundry-VanityNumbers-NumPair
+        - Description: Creates vanity numbers based on phoneNumber input variable.
+    - voiceFoundry-VanityNumbers-GetTopFive
+        - Description: Gets the last five parentNumbers in the results dynamoDB table and returns their data.
+### DynamoDB Tables
+    - voiceFoundry-VanityNumbers-Dictionary
+        - Stores the dictionary of words that can be possible matches with entered phone numbers.
+        - 74,290 words are contained in this Dictionary.
+        - Schema
 
+        |Id|Word|FirstLetter|SecondLetter|ThirdLetter|FourthLetter|FifthLetter|SixthLetter|SeventhLetter
+        |:----:|:---------|:--|:--|:--|:--|:--|:--|:--|
+        |   0  | "ABANDON" | "A" | "B" | "A" | "N" | "D" | "O" | "N" |
 
+    - voiceFoundry-VanityNumbers-NumPair
+        - Stored available character matches for the phone dialpad.
+        - Schema
 
+        |Number|Characters|
+        |:----:|:---------|
+        |   2  | {"A", "B", "C"} |
 
+    - voiceFoundry-VanityNumbers-Results
+        - Stores matched Numbers with thir vanity results
+        - Schema
+        |Id|wordLength|dateAdded|dateId|firstNumber|secondNumber|thirdNumber|fourthNumber|fifthNumber|sixthNumber|seventhNumber|parentNumber|ssmlVanityNumber|vanityNumber|word|
+        |--|----------|---------|------|-----------|------------|-----------|------------|-----------|-----------|-------------|------------|----------------|------------|----|
+        |00|4         |1620235398822|0 |F|L|O|W|E|R|S|8003569377|<speak><prosody rate="65%"><say-as interpret-as="spell-out">800FLOWERS</say-as></prosody></speak>|800-FLO-WERS|FLOWERS |
+
+### Amazon Connect
+    - Amazon Connect phone Number: 1 (214) 25-OKAY-3 / 1 (214) 256-5293.
+    - See [Contact Flow Diagrams](./AmazonConnectDiagrams.md)
 
 ### Retrospective
 
