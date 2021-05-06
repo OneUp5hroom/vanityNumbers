@@ -39,12 +39,14 @@ Exercise
 5. Finalize Documentation and make public ***TODO***
     - BONUS: Architecture Diagram. ***TODO***
 
+# Documentation
 
-1.	Record your reasons for implementing the solution the way you did, struggles you faced and problems you overcame.
-2.	What shortcuts did you take that would be a bad practice in production?
-3.	What would you have done with more time? We know you have a life. :-)
 
-6. Write the story 
+
+
+
+
+
 
 ### Retrospective
 
