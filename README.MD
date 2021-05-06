@@ -44,9 +44,9 @@ Exercise
 ![NetworkDiagram](https://user-images.githubusercontent.com/29815567/117233085-0e5e2180-ade8-11eb-93fe-2e547bfc63e1.png)
 
 ### Amazon API Gateway
-    
+
 ### Website
-    - URL: [okay.alcandev.com](http://okay.alcandev.com)
+- URL: [okay.alcandev.com](http://okay.alcandev.com)
     - Infrastructure: 
     - Code Deployment: AWS S3 bucket
     - API: AWS API Gateway
@@ -75,29 +75,29 @@ Exercise
     - voiceFoundry-VanityNumbers-GetTopFive
         - Description: Gets the last five parentNumbers in the results dynamoDB table and returns their data.
 ### DynamoDB Tables
-    - voiceFoundry-VanityNumbers-Dictionary
-        - Stores the dictionary of words that can be possible matches with entered phone numbers.
-        - 74,290 words are contained in this Dictionary.
-        - Schema
+- voiceFoundry-VanityNumbers-Dictionary
+    - Stores the dictionary of words that can be possible matches with entered phone numbers.
+    - 74,290 words are contained in this Dictionary.
+    - Schema
 
-        |Id|Word|FirstLetter|SecondLetter|ThirdLetter|FourthLetter|FifthLetter|SixthLetter|SeventhLetter
-        |:----:|:---------|:--|:--|:--|:--|:--|:--|:--|
-        |   0  | "ABANDON" | "A" | "B" | "A" | "N" | "D" | "O" | "N" |
+    |Id|Word|FirstLetter|SecondLetter|ThirdLetter|FourthLetter|FifthLetter|SixthLetter|SeventhLetter
+    |:----:|:---------|:--|:--|:--|:--|:--|:--|:--|
+    |   0  | "ABANDON" | "A" | "B" | "A" | "N" | "D" | "O" | "N" |
 
-    - voiceFoundry-VanityNumbers-NumPair
-        - Stored available character matches for the phone dialpad.
-        - Schema
+- voiceFoundry-VanityNumbers-NumPair
+    - Stored available character matches for the phone dialpad.
+    - Schema
 
-        |Number|Characters|
-        |:----:|:---------|
-        |   2  | {"A", "B", "C"} |
+    |Number|Characters|
+    |:----:|:---------|
+    |   2  | {"A", "B", "C"} |
 
-    - voiceFoundry-VanityNumbers-Results
-        - Stores matched Numbers with thir vanity results
-        - Schema
-        |Id|wordLength|dateAdded|dateId|firstNumber|secondNumber|thirdNumber|fourthNumber|fifthNumber|sixthNumber|seventhNumber|parentNumber|ssmlVanityNumber|vanityNumber|word|
-        |--|----------|---------|------|-----------|------------|-----------|------------|-----------|-----------|-------------|------------|----------------|------------|----|
-        |00|4         |1620235398822|0 |F|L|O|W|E|R|S|8003569377|<speak><prosody rate="65%"><say-as interpret-as="spell-out">800FLOWERS</say-as></prosody></speak>|800-FLO-WERS|FLOWERS |
+- voiceFoundry-VanityNumbers-Results
+    - Stores matched Numbers with thir vanity results
+    - Schema
+    |Id|wordLength|dateAdded|dateId|firstNumber|secondNumber|thirdNumber|fourthNumber|fifthNumber|sixthNumber|seventhNumber|parentNumber|ssmlVanityNumber|vanityNumber|word|
+    |--|----------|---------|------|-----------|------------|-----------|------------|-----------|-----------|-------------|------------|----------------|------------|----|
+    |00|4         |1620235398822|0 |F|L|O|W|E|R|S|8003569377|<speak><prosody rate="65%"><say-as interpret-as="spell-out">800FLOWERS</say-as></prosody></speak>|800-FLO-WERS|FLOWERS |
 
 ### Amazon Connect
     - Amazon Connect phone Number: 1 (214) 25-OKAY-3 / 1 (214) 256-5293.
