@@ -48,13 +48,13 @@ Exercise
 
 ### Website
 - URL: [okay.alcandev.com](http://okay.alcandev.com)
-        - Infrastructure: 
-        - Code Deployment: AWS S3 bucket
-        - API: AWS API Gateway
-        - Compute: AWS Lambda (Node 14.x)
-        - Database: AWS DynamoDB
+            - Infrastructure: 
+            - Code Deployment: AWS S3 bucket
+            - API: AWS API Gateway
+            - Compute: AWS Lambda (Node 14.x)
+            - Database: AWS DynamoDB
 
-        - Code Base:
+            Code Base:
             - GitHub Repo: https://github.com/OneUp5hroom/vanityNumbers
             - Angular CLI: 11.2.10
             - Node: 16.0.0
@@ -96,6 +96,7 @@ Exercise
 - voiceFoundry-VanityNumbers-Results
     - Stores matched Numbers with thir vanity results
     - Schema
+    
     |Id|wordLength|dateAdded|dateId|firstNumber|secondNumber|thirdNumber|fourthNumber|fifthNumber|sixthNumber|seventhNumber|parentNumber|ssmlVanityNumber|vanityNumber|word|
     |--|----------|---------|------|-----------|------------|-----------|------------|-----------|-----------|-------------|------------|----------------|------------|----|
     |00|4         |1620235398822|0 |F|L|O|W|E|R|S|8003569377|\<speak\>\<prosody rate\=\"65%\"\>\<say-as interpret-as\=\"spell-out\"\>800FLOWERS\<\/say-as\>\<\/prosody\>\<\/speak\>|800-FLO-WERS|FLOWERS|
