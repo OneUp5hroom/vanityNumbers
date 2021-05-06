@@ -3,9 +3,9 @@
 ## Greeting Dialog
 ![Greeting-Dialog_ww](https://user-images.githubusercontent.com/29815567/117228480-c090eb80-adde-11eb-86de-b4b0d8987ba6.png)
 ## onBoarding Dialog
-![onBoarding-Dialog_ww](https://user-images.githubusercontent.com/29815567/117228493-c7b7f980-adde-11eb-8622-bc4151994ce6.png)
+![onBoarding-Dialog_ww](https://user-images.githubusercontent.com/29815567/117231554-0b156680-ade5-11eb-82d6-563969bdc959.png)
 ## ReadVanity Dialog
-![ReadVanity-Dialog_ww](https://user-images.githubusercontent.com/29815567/117229194-26ca3e00-ade0-11eb-98b4-266dbd22a507.png)
+![ReadVanity-Dialog_ww](https://user-images.githubusercontent.com/29815567/117232915-c17a4b00-ade7-11eb-98ed-a78d60840cc5.png)
 ## NewVanity Dialog
 ![GetNewVanity_ww](https://user-images.githubusercontent.com/29815567/117229245-3cd7fe80-ade0-11eb-99ff-d96d51601597.png)
 ## Error Dialog
