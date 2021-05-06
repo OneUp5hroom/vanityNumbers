@@ -41,7 +41,8 @@ Exercise
 
 # Documentation
 ### Network Diagram
-![NetworkDiagram](https://user-images.githubusercontent.com/29815567/117233085-0e5e2180-ade8-11eb-93fe-2e547bfc63e1.png)
+![NetworkDiagram](https://user-images.githubusercontent.com/29815567/117234444-9fce9300-adea-11eb-8ea5-02ab71a50c1a.png)
+
 
 ### Amazon API Gateway
     
