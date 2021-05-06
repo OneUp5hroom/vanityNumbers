@@ -123,7 +123,7 @@ Exercise
     |   0  | "ABANDON" | "A" | "B" | "A" | "N" | "D" | "O" | "N" |
 
 - voiceFoundry-VanityNumbers-NumPair
-    - Stored available character matches for the phone dialpad.
+    - Stored available character matches for the phone keypad.
     - Schema
 
     |Number|Characters|
@@ -131,7 +131,7 @@ Exercise
     |   2  | {"A", "B", "C"} |
 
 - voiceFoundry-VanityNumbers-Results
-    - Stores matched Numbers with thir vanity results
+    - Stores matched Numbers with their vanity results
     - Schema
 
     |Id|wordLength|dateAdded|dateId|firstNumber|secondNumber|thirdNumber|fourthNumber|fifthNumber|sixthNumber|seventhNumber|parentNumber|ssmlVanityNumber|vanityNumber|word|
