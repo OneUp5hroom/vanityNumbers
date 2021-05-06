@@ -5,7 +5,7 @@
 ## onBoarding Dialog
 ![onBoarding-Dialog_ww](https://user-images.githubusercontent.com/29815567/117231554-0b156680-ade5-11eb-82d6-563969bdc959.png)
 ## ReadVanity Dialog
-![ReadVanity-Dialog_ww](https://user-images.githubusercontent.com/29815567/117232915-c17a4b00-ade7-11eb-98ed-a78d60840cc5.png)
+![ReadVanity-Dialog_ww](https://user-images.githubusercontent.com/29815567/117303950-d9cb8380-ae42-11eb-9186-0123088f8fec.png)
 ## NewVanity Dialog
 ![GetNewVanity_ww](https://user-images.githubusercontent.com/29815567/117229245-3cd7fe80-ade0-11eb-99ff-d96d51601597.png)
 ## Error Dialog
