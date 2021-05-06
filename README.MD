@@ -3,43 +3,21 @@
 ```
 We expect you to build this out as you would a production project for a client, only on a small scale (tests, error handling, etc). Where you don't have the time to implement something, add comments to your code or documentation on how you would have changed or added to your implementation in the "real world".
 Deliverables
-1.	Git Repo with all code and documentation
-2.	BONUS - a working Amazon Connect phone number to test in your environment :-)
+1.	<p style="color: green;">[Complete]</p> Git Repo with all code and documentation
+2.	<p style="color: green;">[Complete]</p> BONUS - a working Amazon Connect phone number to test in your environment :-)
 Exercise
-1.	Create a Lambda that converts phone numbers to vanity numbers and save the best 5 resulting vanity numbers and the caller's number in a DynamoDB table. "Best" is defined as you see fit - explain your thoughts.
-2.	Create an Amazon Connect contact flow that looks at the caller's phone number and says the 3 vanity possibilities that come back from the Lambda function.
-3.	BONUS - Build a deployment package with AWS SAM, AWS CDK, or CloudFormation to allow a user, or assignment reviewer, to deploy your solution into their own AWS Account/Amazon Connect instance. (The contact flow can be imported manually, but include instructions!)
-4.	SUPER BONUS - a web app that displays the vanity numbers from the last 5 callers.
-5.	Writing and Documentation
-1.	Record your reasons for implementing the solution the way you did, struggles you faced and problems you overcame.
+1.	<p style="color: green;">[Complete]</p> Create a Lambda that converts phone numbers to vanity numbers and save the best 5 resulting vanity numbers and the caller's number in a DynamoDB table. "Best" is defined as you see fit - explain your thoughts.
+2.	<p style="color: green;">[Complete]</p> Create an Amazon Connect contact flow that looks at the caller's phone number and says the 3 vanity possibilities that come back from the Lambda function.
+3.	<p style="color: red;">[Not Done]</p>BONUS - Build a deployment package with AWS SAM, AWS CDK, or CloudFormation to allow a user, or assignment reviewer, to deploy your solution into their own AWS Account/Amazon Connect instance. (The contact flow can be imported manually, but include instructions!)
+4.	<p style="color: green;">[Complete]</p> SUPER BONUS - a web app that displays the vanity numbers from the last 5 callers.
+5.	<p style="color: green;">[Complete]</p> Writing and Documentation
+1.	<p style="color: green;">[Complete]</p> Record your reasons for implementing the solution the way you did, struggles you faced and problems you overcame.
 2.	What shortcuts did you take that would be a bad practice in production?
 3.	What would you have done with more time? We know you have a life. :-)
 4.	BONUS - Please include an architecture diagram.
 ```
 
 # Project Documentation
-### Deliverables
-1. Git Repo with all code and documentation: AWS Code Commit [Link](https://console.aws.amazon.com/codesuite/codecommit/repositories/amazonConnect-VanityNumbers/browse?region=us-east-1)
-2. Working Amazon Connect phone Number: 1 (214) 25-OKAY-3 / 1 (214) 256-5293.
-### Exercise
-1. Lambda Functions:
-    - voiceFoundry-VanityNumbers-GetVanityNumbers
-        - Description: Gets created vanity numbers from the results dynamoDB table. 
-    - voiceFoundry-VanityNumbers-NumPair
-        - Description: Creates vanity numbers based on phoneNumber input variable.
-    - voiceFoundry-VanityNumbers-GetTopFive
-        - Description: Gets the last five parentNumbers in the results dynamoDB table and returns their data.
-2. Amazon Connect: Contact Flow Completed.
-    - TODO add docs for this ***TODO***
-3. BONUS: CloudFormation: ***TODO***
-    - I was unable to complete this step, it was something I was already not confident I could complete in an efficient manor because it would have been my first CloudFormation document. One limitation of my current role is this task is offloaded to the Cloud DevOps folks so I do not have experience with it. In the end I was hopeful that I would have the time to complete this step, if not purely for my own education, but I ran out of time. This is on the list of things I would have liked to finish if I had more time. 
-4. BONUS: WebSite:
-    - URL: [okay.alcandev.com](http://okay.alcandev.com)
-    - AngularCLI v11.2.10 /node.js v16.0.0 
-5. Finalize Documentation and make public ***TODO***
-    - BONUS: Architecture Diagram. ***TODO***
-
-# Documentation
 ### Network Diagram
 ![NetworkDiagram](https://user-images.githubusercontent.com/29815567/117234444-9fce9300-adea-11eb-8ea5-02ab71a50c1a.png)
 
