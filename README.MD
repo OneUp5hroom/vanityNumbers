@@ -1,6 +1,6 @@
 # Project Requirements
 ## Mid-Level Development Project
-```
+
 We expect you to build this out as you would a production project for a client, only on a small scale (tests, error handling, etc). Where you don't have the time to implement something, add comments to your code or documentation on how you would have changed or added to your implementation in the "real world".
 Deliverables
 1.	<p style="color: green;">[Complete]</p> Git Repo with all code and documentation
@@ -15,7 +15,7 @@ Exercise
 2.	What shortcuts did you take that would be a bad practice in production?
 3.	What would you have done with more time? We know you have a life. :-)
 4.	BONUS - Please include an architecture diagram.
-```
+
 
 # Project Documentation
 ### Network Diagram
