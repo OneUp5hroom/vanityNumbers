@@ -72,6 +72,7 @@ Exercise
                 ```
             
             - response Model: application/json
+                - "ret" contains if the return was successful or not from the Lambda function.
 
                 ```
                 {
