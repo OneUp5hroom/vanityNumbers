@@ -40,7 +40,8 @@ Exercise
     - BONUS: Architecture Diagram. ***TODO***
 
 # Documentation
-
+### Network Diagram
+![NetworkDiagram](https://user-images.githubusercontent.com/29815567/117233085-0e5e2180-ade8-11eb-93fe-2e547bfc63e1.png)
 
 
 
