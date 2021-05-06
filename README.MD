@@ -45,6 +45,63 @@ Exercise
 
 
 ### Amazon API Gateway
+- voiceFoundry-VanityNumbers
+    - !Important: This API Gateway was quickly thrown together, and I am well aware that it contains many security flaws that should never be in production!
+    - API is set up with cors to work with external sources.
+    - Deployment Stage: Dev
+        - Base URL: https://izi2r9woac.execute-api.us-east-1.amazonaws.com/dev
+    - /Methods
+        - GET()
+            - Description: Executes the voiceFoundry-VanityNumbers-GetVanityNumbers Lambda Function
+            - URL Query String Parameters: phoneNumber, webSource
+                - phoneNumber [the number that will be used to query the results database table.]
+                - webSource [used to indicate to the lambda function to return data in the proper format]
+                    - expected values [true || false]
+        - POST()
+            - Description: Executes the voiceFoundry-VanityNumbers-NumPair Lambda Function.
+            - body Model: application/json
+
+                ```
+                {
+                    "type":"object",
+                    "properties" : {
+                        "phoneNumber": {"type": "string"}
+                    },
+                    "title": "Input"
+                }
+                ```
+            
+            - response Model: application/json
+
+                ```
+                {
+                    "type":"object",
+                    "properties":{
+                        "ret":{"type":"string"}
+                    },
+                    "title":"Output"
+                }
+                ```
+            - /topfive
+                - GET()
+                    - Description: Executes the voiceFoundry-VanityNumbers-GetTopFive Lambda Function
+                    - No parameters accepted
+                    - returns Array\<object\>
+
+                        ```
+                        {
+                            "body": {
+                                "Items": [
+                                    {
+                                        "parentNumber": {"type": "string"},
+                                        "vanityNumber": {"type": "string"},
+                                        "word": {"type": "string"},
+                                        "dateAdded": {"type": "number"}
+                                    }
+                                ]
+                            }
+                        }
+                        ```
 
 ### Website
 - URL: [okay.alcandev.com](http://okay.alcandev.com)
