@@ -19,8 +19,7 @@ Exercise
 
 # Project Documentation
 ### Network Diagram
-![NetworkDiagram](https://user-images.githubusercontent.com/29815567/117234444-9fce9300-adea-11eb-8ea5-02ab71a50c1a.png)
-
+![NetworkDiagram](https://user-images.githubusercontent.com/29815567/117303485-5a3db480-ae42-11eb-80ab-5645357a9b1b.png)
 
 ### Amazon API Gateway
 - voiceFoundry-VanityNumbers
